@@ -160,7 +160,7 @@ export class Parser {
     }
 }
 
-export function parse(line: string) {
-    const tokens = Array.from(new Tokenizer(line, 1).parse())
+export function parse(line: string, lineNo = 1) {
+    const tokens = Array.from(new Tokenizer(line, lineNo).parse())
     return new Parser(tokens).parse()
 }
