@@ -4,7 +4,9 @@ import ComputerError from './computer-error'
 import { parse } from './parser'
 
 export class Computer {
-    memory: any = {}
+    memory: any = {
+        __precision__: 20 // default value
+    }
 
     cached: { [key: string]: BigNumber } = {}
 
