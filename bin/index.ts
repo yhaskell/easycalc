@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { Computer } from './computer'
+import { Computer } from '../lib/computer'
 import * as readline from 'readline'
 import * as fs from 'fs'
 
