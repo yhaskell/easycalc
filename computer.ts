@@ -1,4 +1,4 @@
-import * as bi from 'big-integer'
+import BigNumber from 'bignumber.js'
 import * as AST from './ast'
 import ComputerError from './computer-error'
 import { parse } from './parser'
@@ -6,16 +6,16 @@ import { parse } from './parser'
 export class Computer {
     memory: any = {}
 
-    cached: { [key: string]: bi.BigInteger } = {}
+    cached: { [key: string]: BigNumber } = {}
 
-    lastComp: bi.BigInteger
+    lastComp: BigNumber
 
     private computeUnary(node: AST.Unary) {
         switch (node.operator) {
             case "+":
                 return this.computeNode(node.value)
             case "-":
-                return this.computeNode(node.value).negate()
+                return this.computeNode(node.value).negated()
             default:
                 throw new ComputerError(`Unknown operator`, node.position.start, node.position.line)
         }
@@ -25,6 +25,9 @@ export class Computer {
         const lr = this.computeNode(node.right)
         if (node.operator === "=") {
             const id = (<AST.Identifier>node.left).value
+            if (id == "_")
+                throw new ComputerError("Cannot write into read-only variable _", node.position.start, node.position.line)
+            if (id == "__precision__") BigNumber.config({ DECIMAL_PLACES: lr.toNumber() })
             this.memory[id] = lr
 
             return lr
@@ -32,23 +35,23 @@ export class Computer {
         const lc = this.computeNode(node.left)
         switch (node.operator) {
             case "+":
-                return lc.add(lr)
+                return lc.plus(lr)
             case "-":
-                return lc.subtract(lr)
+                return lc.minus(lr)
             case "*":
-                return lc.multiply(lr)
+                return lc.times(lr)
             case "/":
-                return lc.divide(lr)
+                return lc.dividedBy(lr)
             default:
                 throw new ComputerError(`Unknown operator`, node.position.start, node.position.line)
         }
     }
 
-    private computeNode(node: AST.Node): bi.BigInteger {
+    private computeNode(node: AST.Node): BigNumber {
         switch (node.kind) {
             case AST.NodeKind.Const:
                 if (this.cached[node.value]) return this.cached[node.value]
-                return this.cached[node.value] = bi(node.value)
+                return this.cached[node.value] = new BigNumber(node.value)
             case AST.NodeKind.Identifier:
                 if (node.value == "_") return this.lastComp
                 if (this.memory[node.value]) return this.memory[node.value]

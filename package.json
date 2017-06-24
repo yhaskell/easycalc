@@ -7,17 +7,18 @@
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
+    "start": "tsc && node index",
     "test": "mocha -R dot"
   },
   "dependencies": {
-    "big-integer": "^1.6.23",
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "bignumber.js": "^4.0.2"
   },
   "devDependencies": {
-    "@types/big-integer": "^0.0.31",
+    "@types/bignumber.js": "^4.0.2",
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.2"
+    "@types/node": "^8.0.2",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
   }
 }

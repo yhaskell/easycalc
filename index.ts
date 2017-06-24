@@ -13,11 +13,12 @@ function REPL() {
 
     const computer = new Computer()
 
+
     function lineRead(line: string) {
         if (line != "") {
             try {
                 const result = computer.compute(line)
-                console.log(result.toString())
+                console.log(result.toFixed(result.decimalPlaces()))
             } catch (err) {
                 console.log(err.message)
             }
