@@ -15,7 +15,15 @@ function REPL() {
 
 
     function lineRead(line: string) {
-        if (line != "") {
+        if (line.match(/^\s*__vars__\s*$/)) {
+            for (var key of Object.keys(computer.memory)) {
+                var num = computer.memory[key]
+                console.log(`${key}: ${num.toFixed(num.decimalPlaces())}`)
+            }
+        }
+        else if (line != "") {
+
+
             try {
                 const result = computer.compute(line)
                 console.log(result.toFixed(result.decimalPlaces()))
