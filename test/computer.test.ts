@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import { Computer } from '../computer'
+import { Computer } from '../lib/computer'
 
 describe("computer", () => {
     it("computes positive", () => {

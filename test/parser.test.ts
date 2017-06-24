@@ -1,6 +1,6 @@
 import { assert } from 'chai'
-import { parse } from '../parser'
-import * as AST from '../ast'
+import { parse } from '../lib/parser'
+import * as AST from '../lib/ast'
 
 const defaultPos = { line: 0, start: 0, end: 0 }
 const cn = (line: string) => AST.constant(line, defaultPos)

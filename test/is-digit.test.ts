@@ -1,5 +1,5 @@
 import { assert } from 'chai'
-import { isDigit } from '../tokenizer'
+import { isDigit } from '../lib/tokenizer'
 
 describe("isDigit", () => {
     it("returns true on digits passed as numbers", () => {

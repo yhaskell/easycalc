@@ -1,5 +1,5 @@
 import { assert, expect } from 'chai'
-import { parse } from '../tokenizer'
+import { parse } from '../lib/tokenizer'
 
 describe("lexer", () => {
     it("returns an empty list on empty string", () => {
