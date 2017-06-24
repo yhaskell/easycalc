@@ -10,6 +10,9 @@
     "start": "tsc && node index",
     "test": "mocha -R dot"
   },
+  "bin": {
+    "easycalc": "bin/index.js"
+  },
   "dependencies": {
     "bignumber.js": "^4.0.2"
   },
