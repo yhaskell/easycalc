@@ -1,0 +1,13 @@
+{
+  "name": "calculator",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "Igor N. Dultsev <yhaskell@live.com>",
+  "license": "ISC",
+  "dependencies": {
+    "big-integer": "^1.6.23"
+  },
+  "devDependencies": {
+    "@types/big-integer": "^0.0.31"
+  }
+}
