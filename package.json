@@ -4,10 +4,20 @@
   "main": "index.js",
   "author": "Igor N. Dultsev <yhaskell@live.com>",
   "license": "ISC",
+  "scripts": {
+    "build": "tsc",
+    "build-watch": "tsc -w",
+    "test": "mocha -R dot"
+  },
   "dependencies": {
-    "big-integer": "^1.6.23"
+    "big-integer": "^1.6.23",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2"
   },
   "devDependencies": {
-    "@types/big-integer": "^0.0.31"
+    "@types/big-integer": "^0.0.31",
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.2"
   }
 }
