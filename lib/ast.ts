@@ -1,4 +1,4 @@
-import { Token } from "./tokenizer";
+import { Token } from "./token";
 
 export enum NodeKind {
     Const, 
@@ -15,7 +15,7 @@ interface NodePosition {
     end: number
 }
 
-interface INode {
+export interface INode {
     kind: NodeKind
 
     position: NodePosition

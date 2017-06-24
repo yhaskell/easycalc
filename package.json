@@ -1,7 +1,6 @@
 {
-  "name": "calculator",
-  "version": "0.1.0",
-  "main": "index.js",
+  "name": "easycalc",
+  "version": "0.1.4",
   "author": "Igor N. Dultsev <yhaskell@live.com>",
   "license": "ISC",
   "scripts": {
@@ -13,15 +12,16 @@
   "bin": {
     "easycalc": "bin/index.js"
   },
+  "main": "./lib/index.js",
+  "module": "./lib/index.js",
   "dependencies": {
     "bignumber.js": "^4.0.2"
   },
   "devDependencies": {
-    "@types/bignumber.js": "^4.0.2",
+    "chai": "^4.0.2",
+    "mocha": "^3.4.2",
     "@types/chai": "^4.0.1",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^8.0.2",
-    "chai": "^4.0.2",
-    "mocha": "^3.4.2"
+    "@types/node": "^8.0.2"
   }
 }

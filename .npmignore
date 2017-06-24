@@ -1,0 +1,6 @@
+! *.js
+*.js.map
+*.tgz
+
+yarn.lock
+node_modules

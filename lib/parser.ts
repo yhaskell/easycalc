@@ -1,6 +1,7 @@
 import * as AST from './ast'
 
-import { TokenKind, Token, Tokenizer } from './tokenizer'
+import { Tokenizer } from './tokenizer'
+import { TokenKind, Token } from './token'
 import ComputerError from './computer-error'
 
 /*

@@ -1,21 +1,6 @@
 import { Identifier } from './ast';
 import ComputerError from './computer-error';
-
-export enum TokenKind {
-    Const, 
-    Identifier,
-    Operator,
-    OpBracket,
-    ClBracket,
-}
-
-export interface Token {
-    kind: TokenKind
-    value: string
-    line: number
-    start: number
-    end: number
-}
+import { Token, TokenKind } from './token'
 
 export class Tokenizer {
     constructor(public line: string, public lineNo: number) {}
