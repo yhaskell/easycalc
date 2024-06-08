@@ -1,63 +1,59 @@
 #!/usr/bin/env node
 
-import { Computer } from '../lib/computer'
-import * as readline from 'readline'
-import * as fs from 'fs'
-
+import { Computer } from "../lib/computer";
+import * as readline from "readline";
+import * as fs from "fs";
+import * as assert from "assert";
 
 function REPL() {
-    const rl = readline.createInterface({
+  const rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
-    });
+    output: process.stdout,
+  });
 
-    const computer = new Computer()
+  const computer = new Computer();
 
-
-    function lineRead(line: string) {
-        if (line.match(/^\s*__vars__\s*$/)) {
-            for (var key of Object.keys(computer.memory)) {
-                var num = computer.memory[key]
-                console.log(`${key}: ${num.toFixed(num.decimalPlaces())}`)
-            }
-        }
-        else if (line != "") {
-
-
-            try {
-                const result = computer.compute(line)
-                console.log(result.toFixed(result.decimalPlaces()))
-            } catch (err) {
-                console.log(err.message)
-            }
-        }
-        rl.question("> ", lineRead)
+  function lineRead(line: string) {
+    if (line.match(/^\s*__vars__\s*$/)) {
+      for (var key of Object.keys(computer.memory)) {
+        var num = computer.memory[key];
+        console.log(`${key}: ${num.toFixed(num.decimalPlaces())}`);
+      }
+    } else if (line != "") {
+      try {
+        const result = computer.compute(line);
+        console.log(result.toFixed(result.decimalPlaces()));
+      } catch (err) {
+        assert(err instanceof Error);
+        console.log(err.message);
+      }
     }
+    rl.question("> ", lineRead);
+  }
 
-    rl.question("> ", lineRead)
+  rl.question("> ", lineRead);
 }
 
 function fromFile(filename: string) {
-    const computer = new Computer();
-    let lines: string[]
-    try {
-        lines = fs.readFileSync(filename, "utf-8").split("\n")
-    } catch (err) {
-        console.error(`cannot open file ${filename} for reading.`)
-        return 
-    }
-    
-    for (const line of lines) 
-        if (line != "") computer.compute(line)
-    
-    console.log(computer.lastComp.toString())
+  const computer = new Computer();
+  let lines: string[];
+  try {
+    lines = fs.readFileSync(filename, "utf-8").split("\n");
+  } catch (err) {
+    console.error(`cannot open file ${filename} for reading.`);
+    return;
+  }
+
+  for (const line of lines) if (line != "") computer.compute(line);
+
+  console.log(computer.lastComp.toString());
 }
 
 if (process.argv.length == 3) {
-    fromFile(process.argv[process.argv.length - 1])
+  fromFile(process.argv[process.argv.length - 1]);
 } else if (process.argv.length == 2) {
-    REPL()
+  REPL();
 } else {
-    console.error("Usage: " + process.argv0 + " " + process.argv[1] + " [FILE]")
-    process.exit(1)
+  console.error("Usage: " + process.argv0 + " " + process.argv[1] + " [FILE]");
+  process.exit(1);
 }
